@@ -4,6 +4,7 @@ var lettersDiv = document.getElementById('letters');
 var guessesDiv = document.getElementById('guesses');
 var secretWord = "";
 var blanks = "";
+var wrongGuessCount = 6;
 
 /**
  * Initializes a new game.
@@ -58,42 +59,28 @@ function guessLetter(elm) {
   // TODO: Determine if the letter is in the secret word,
   // if so, reveal it in the secretWordDiv, otherwise
   // add a part to our hangman
-
-var letterCheck = false;
-  var win = false;
-
-  for (i = 0; i < secretWord.length; i++) 
-  {
-      if (secretWord[i] == letter.toLowerCase()) {
-          letterCheck = true;
-          wordDiv.childNodes[i].textContent = letter;
-      }
-  }
-  if (!letterCheck) {
-      drawStickMan(wrongGuesses = wrongGuesses + 1);
-  }
-
-  // TODO: Determine if the game is over, and if so,
-  // let the player know if they have won or lost
   
-  if (wrongGuesses == 6)
-  {
-      document.write("Sorry you loose");
-  }
-  for (i = 0; i < secretWord.length; i++)
-  {
-      if (wordDiv.childNodes[i].textContent == secretWord[i].toUpperCase()) {
-          win = true;
+  if(secretWord.indexof(letter.toLowerCase())!= -1){
+    var oldBlanks = blanks;
+    blanks="";
+    
+    for( i=0;i<secretWord.length;i++){
+      if(secretWord.charAt(i) = letter.toLowerase()){
+        blanks += letter.toLowerCase();
       }
-      else {
-          win = false;
-          break;
-      }
+      else{
+        blanks = oldBlanks.charAt(i);
+      
+    }
   }
-  if (win) {
-      document.write("Congratulations you win");
+  drawBlanks();
   }
-}
+  else{
+    wrongGuessCount +=1;
+    drawStickMan(wrongGuessCount);
+  }
+
+  
 /**
  * Draws the stickman
  * @param {wrongGuesses} the number of wrong guesses
