@@ -59,9 +59,40 @@ function guessLetter(elm) {
   // if so, reveal it in the secretWordDiv, otherwise
   // add a part to our hangman
 
+var letterCheck = false;
+  var win = false;
+
+  for (i = 0; i < secretWord.length; i++) 
+  {
+      if (secretWord[i] == letter.toLowerCase()) {
+          letterCheck = true;
+          wordDiv.childNodes[i].textContent = letter;
+      }
+  }
+  if (!letterCheck) {
+      drawStickMan(wrongGuesses = wrongGuesses + 1);
+  }
+
   // TODO: Determine if the game is over, and if so,
   // let the player know if they have won or lost
-}
+  
+  if (wrongGuesses == 6)
+  {
+      document.write("Sorry you loose");
+  }
+  for (i = 0; i < secretWord.length; i++)
+  {
+      if (wordDiv.childNodes[i].textContent == secretWord[i].toUpperCase()) {
+          win = true;
+      }
+      else {
+          win = false;
+          break;
+      }
+  }
+  if (win) {
+      document.write("Congratulations you win");
+  }
 
 /**
  * Draws the stickman
