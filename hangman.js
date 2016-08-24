@@ -93,7 +93,7 @@ var letterCheck = false;
   if (win) {
       document.write("Congratulations you win");
   }
-
+}
 /**
  * Draws the stickman
  * @param {wrongGuesses} the number of wrong guesses
@@ -105,6 +105,7 @@ function drawStickMan(wrongGuesses) {
   else {
     scaffold.src = "stickman" + wrongGuesses + ".png";
   }
+}
 }
 
 /**
